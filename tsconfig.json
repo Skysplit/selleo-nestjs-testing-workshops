@@ -15,6 +15,13 @@
     "skipLibCheck": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@author/*": ["src/author/*"],
+      "@book/*": ["src/book/*"],
+      "@supply/*": ["src/supply/*"],
+      "@database/*": ["src/database/*"],
+      "@test/*": ["test/*"]
+    }
   }
 }
