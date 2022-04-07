@@ -34,7 +34,7 @@ describe('AppController (e2e)', () => {
     });
 
     expect(foundBook).not.toBeNull();
-    expect(foundBook.authors).toHaveLength(1);
+    expect(foundBook?.authors).toHaveLength(1);
     expect(body.title).toEqual('Test Book');
     expect(body.subtitle).toEqual('Test subtitle');
     expect(body.isbn).toEqual('9788374323574');
@@ -52,6 +52,7 @@ describe('AppController (e2e)', () => {
 
     const { id: bookId } = await createBook({
       authors: [author3],
+      isbn: '1234567890123',
     });
 
     const { body } = await request(app.getHttpServer())
@@ -68,7 +69,7 @@ describe('AppController (e2e)', () => {
     });
 
     expect(foundBook).not.toBeNull();
-    expect(foundBook.authors).toHaveLength(2);
+    expect(foundBook?.authors).toHaveLength(2);
     expect(body.title).toEqual('New title');
     expect(body.subtitle).toEqual('New subtitle');
     expect(body.authors).toEqual(

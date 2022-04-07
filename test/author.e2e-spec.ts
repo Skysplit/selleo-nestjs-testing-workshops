@@ -29,9 +29,9 @@ describe('AuthorController', () => {
 
       expect(foundAuthor).toBeTruthy();
       expect(statusCode).toEqual(201);
-      expect(body.firstName).toEqual(foundAuthor.firstName);
-      expect(body.lastName).toEqual(foundAuthor.lastName);
-      expect(body.bio).toEqual(foundAuthor.bio);
+      expect(body.firstName).toEqual(foundAuthor?.firstName);
+      expect(body.lastName).toEqual(foundAuthor?.lastName);
+      expect(body.bio).toEqual(foundAuthor?.bio);
     });
   });
 
@@ -75,17 +75,16 @@ describe('AuthorController', () => {
         .put(`/author/${author.id}`)
         .send(updateAutorData);
 
-      const { id: foundAuthorId, ...foundAuthor } =
-        await authorRepository.findOne(author.id);
+      const foundAuthor = await authorRepository.findOne(author.id);
 
       expect(foundAuthor).toBeTruthy();
-      expect(author.id).toEqual(foundAuthorId);
-      expect(foundAuthor.firstName).toEqual(updateAutorData.firstName);
-      expect(foundAuthor.lastName).toEqual(updateAutorData.lastName);
-      expect(foundAuthor.bio).toEqual(updateAutorData.bio);
-      expect(body.firstName).toEqual(foundAuthor.firstName);
-      expect(body.lastName).toEqual(foundAuthor.lastName);
-      expect(body.bio).toEqual(foundAuthor.bio);
+      expect(author.id).toEqual(foundAuthor?.id);
+      expect(foundAuthor?.firstName).toEqual(updateAutorData.firstName);
+      expect(foundAuthor?.lastName).toEqual(updateAutorData.lastName);
+      expect(foundAuthor?.bio).toEqual(updateAutorData.bio);
+      expect(body.firstName).toEqual(foundAuthor?.firstName);
+      expect(body.lastName).toEqual(foundAuthor?.lastName);
+      expect(body.bio).toEqual(foundAuthor?.bio);
     });
   });
 });

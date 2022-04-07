@@ -18,8 +18,7 @@ export async function createTestingModule() {
   );
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 
-  await app.init();
-  await app.getHttpAdapter().getInstance().ready();
+  app.init();
 
   return app;
 }

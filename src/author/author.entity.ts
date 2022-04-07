@@ -11,21 +11,21 @@ import { Book } from '../book/book.entity';
 @Entity()
 export class Author {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
   @Index({ fulltext: true })
-  firstName: string;
+  firstName!: string;
 
   @Column()
   @Index({ fulltext: true })
-  lastName: string;
+  lastName!: string;
 
   @Column({ type: 'text' })
-  bio: string;
+  bio!: string;
 
   @ManyToMany(() => Book, (book) => book.authors, {
     cascade: true,
   })
-  books: Book[];
+  books!: Book[];
 }

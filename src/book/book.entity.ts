@@ -14,26 +14,26 @@ import { Supply } from '../supply/supply.entity';
 @Entity()
 export class Book {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ type: 'varchar', width: 13 })
   @Index()
-  isbn: string;
+  isbn!: string;
 
   @Column()
   @Index({ fulltext: true })
-  title: string;
+  title!: string;
 
   @Column()
   @Index({ fulltext: true })
-  subtitle: string;
+  subtitle!: string;
 
   @ManyToMany(() => Author, (author) => author.books, {})
   @JoinTable({ name: 'book_author' })
-  authors: Author[];
+  authors!: Author[];
 
   @OneToMany(() => Supply, (supply) => supply.book, {
     cascade: true,
   })
-  supplies: Supply[];
+  supplies!: Supply[];
 }

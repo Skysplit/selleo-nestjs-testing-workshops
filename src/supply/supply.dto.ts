@@ -6,5 +6,5 @@ export class SupplyDTO {
     allowNaN: false,
     maxDecimalPlaces: 0,
   })
-  bookId: number;
+  bookId!: number;
 }

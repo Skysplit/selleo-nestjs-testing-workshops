@@ -13,4 +13,8 @@ module.exports = {
     prefix: '<rootDir>/',
   }),
   setupFilesAfterEnv: ['./test/factories/index.ts', './test/jest-e2e.setup.ts'],
+  watchPlugins: [
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
+  ],
 };

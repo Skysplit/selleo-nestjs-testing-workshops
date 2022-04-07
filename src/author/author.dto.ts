@@ -3,13 +3,13 @@ import { IsNotEmpty, IsString } from 'class-validator';
 export class AuthorDTO {
   @IsString()
   @IsNotEmpty()
-  firstName: string;
+  firstName!: string;
 
   @IsString()
   @IsNotEmpty()
-  lastName: string;
+  lastName!: string;
 
   @IsString()
   @IsNotEmpty()
-  bio: string;
+  bio!: string;
 }

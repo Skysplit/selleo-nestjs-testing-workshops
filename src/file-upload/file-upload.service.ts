@@ -2,14 +2,14 @@ import { Inject, Injectable } from '@nestjs/common';
 import aws from 'aws-sdk';
 import { v4 as uuid } from 'uuid';
 
-import { fileUploadConfig, FileUploadConfigType } from './file-upload.config';
+import { FileUploadConfig, FileUploadConfigType } from './file-upload.config';
 
 @Injectable()
 export class FileUploadService {
   private s3: aws.S3;
 
   constructor(
-    @Inject(fileUploadConfig.KEY) private awsConfig: FileUploadConfigType,
+    @Inject(FileUploadConfig.KEY) private awsConfig: FileUploadConfigType,
   ) {
     this.s3 = new aws.S3({
       credentials: {

@@ -32,6 +32,8 @@ export class BookController {
     // Do something with it?
     const s3File = await this.fileService.upload(file.filename, file.buffer);
 
+    console.log(s3File);
+
     return await this.bookService.create(book);
   }
 
