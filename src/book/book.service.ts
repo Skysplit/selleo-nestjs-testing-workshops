@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -13,12 +13,40 @@ export class BookService {
     protected authorSerivce: AuthorService,
   ) {}
 
+<<<<<<< Updated upstream
+  async find(id: Book['id']) {
+    const book = await this.bookRepository.findOne(id);
+    if (!book) {
+      throw new NotFoundException('Book not found');
+    }
+
+    return book;
+  }
+
   async create(book: BookDTO) {
-    // TODO
+    const { authorIds, ...bookProps } = book;
+    return await this.bookRepository.save({
+      ...bookProps,
+      authors: await this.authorSerivce.findAuthors(authorIds),
+=======
+  async create({ authorIds, ...book }: BookDTO) {
+    const authors = await this.authorSerivce.findAll(authorIds);
+
+    return await this.bookRepository.save({
+      ...book,
+      authors,
+>>>>>>> Stashed changes
+    });
   }
 
   async update(id: Book['id'], book: BookDTO) {
-    // TODO
+    const foundBook = await this.find(id);
+    const { authorIds, ...bookProps } = book;
+    return await this.bookRepository.save({
+      ...foundBook,
+      ...bookProps,
+      authors: await this.authorSerivce.findAuthors(authorIds),
+    });
   }
 
   async delete(id: Book['id']) {
