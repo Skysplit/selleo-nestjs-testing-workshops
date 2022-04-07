@@ -39,6 +39,6 @@ Factory.define<Book>(Book.name).attrs({
     }),
 });
 
-export async function createBook(atts: Partial<Book> = {}) {
-  return await create(Book);
+export async function createBook(attributes?: Partial<Book>) {
+  return await create(Book, attributes);
 }

@@ -1,3 +1,4 @@
+import { FileUploadModule } from '@app/file-upload/file-upload.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
@@ -7,7 +8,7 @@ import { Book } from './book.entity';
 import { BookService } from './book.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Book]), AuthorModule],
+  imports: [TypeOrmModule.forFeature([Book]), FileUploadModule, AuthorModule],
   providers: [BookService],
   controllers: [BookController],
   exports: [BookService],

@@ -11,19 +11,13 @@ export class AuthorService {
     @InjectRepository(Author) protected authorRepository: Repository<Author>,
   ) {}
 
-<<<<<<< Updated upstream
-  async findAuthors(ids: Author['id'][]) {
-=======
   async findAll(ids: Author['id'][]) {
->>>>>>> Stashed changes
     return await this.authorRepository.find({
       where: {
         id: In(ids),
       },
     });
   }
-<<<<<<< Updated upstream
-=======
 
   async find(id: Author['id']) {
     const author = await this.authorRepository.findOne(id);
@@ -35,7 +29,6 @@ export class AuthorService {
     return author;
   }
 
->>>>>>> Stashed changes
   async create(author: AuthorDTO) {
     return await this.authorRepository.save(author);
   }

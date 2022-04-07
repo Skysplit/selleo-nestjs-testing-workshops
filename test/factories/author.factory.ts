@@ -10,6 +10,6 @@ Factory.define<Author>(Author.name).attrs({
   bio: () => faker.name.jobDescriptor(),
 });
 
-export function createAuthor(attrs?: Partial<Author>) {
-  return create(Author, attrs);
+export function createAuthor(attributes?: Partial<Author>) {
+  return create(Author, attributes);
 }

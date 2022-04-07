@@ -13,10 +13,12 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
+    "strict": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@app/*": ["src/*"],
       "@author/*": ["src/author/*"],
       "@book/*": ["src/book/*"],
       "@supply/*": ["src/supply/*"],

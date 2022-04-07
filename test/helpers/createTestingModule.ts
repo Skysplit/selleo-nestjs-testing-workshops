@@ -1,11 +1,10 @@
+import { AppModule } from '@app/app.module';
 import { ValidationPipe } from '@nestjs/common';
 import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+  ExpressAdapter,
+  NestExpressApplication,
+} from '@nestjs/platform-express';
 import { Test } from '@nestjs/testing';
-
-import { AppModule } from '../../src/app.module';
 
 export async function createTestingModule() {
   const testingModule = Test.createTestingModule({
@@ -14,8 +13,8 @@ export async function createTestingModule() {
 
   const compiledModule = await testingModule.compile();
 
-  const app = compiledModule.createNestApplication<NestFastifyApplication>(
-    new FastifyAdapter(),
+  const app = compiledModule.createNestApplication<NestExpressApplication>(
+    new ExpressAdapter(),
   );
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
 

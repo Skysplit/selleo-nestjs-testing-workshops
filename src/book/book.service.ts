@@ -13,7 +13,6 @@ export class BookService {
     protected authorSerivce: AuthorService,
   ) {}
 
-<<<<<<< Updated upstream
   async find(id: Book['id']) {
     const book = await this.bookRepository.findOne(id);
     if (!book) {
@@ -23,33 +22,30 @@ export class BookService {
     return book;
   }
 
-  async create(book: BookDTO) {
-    const { authorIds, ...bookProps } = book;
-    return await this.bookRepository.save({
-      ...bookProps,
-      authors: await this.authorSerivce.findAuthors(authorIds),
-=======
   async create({ authorIds, ...book }: BookDTO) {
     const authors = await this.authorSerivce.findAll(authorIds);
 
     return await this.bookRepository.save({
       ...book,
       authors,
->>>>>>> Stashed changes
     });
   }
 
-  async update(id: Book['id'], book: BookDTO) {
+  async update(id: Book['id'], { authorIds, ...book }: BookDTO) {
     const foundBook = await this.find(id);
-    const { authorIds, ...bookProps } = book;
+
     return await this.bookRepository.save({
       ...foundBook,
-      ...bookProps,
-      authors: await this.authorSerivce.findAuthors(authorIds),
+      ...book,
+      authors: await this.authorSerivce.findAll(authorIds),
     });
   }
 
   async delete(id: Book['id']) {
-    // TODO
+    const foundBook = await this.find(id);
+
+    await this.bookRepository.delete(foundBook.id);
+
+    return foundBook;
   }
 }
