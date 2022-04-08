@@ -1,9 +1,9 @@
+import { Book } from '@book/book.entity';
 import { INestApplication } from '@nestjs/common';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import request from 'supertest';
 import { Repository } from 'typeorm';
 
-import { Book } from '../src/book/book.entity';
 import { createAuthor, createBook } from './factories';
 import { getApplication } from './helpers/getApplication';
 
@@ -21,12 +21,11 @@ describe('AppController (e2e)', () => {
 
     const { body } = await request(app.getHttpServer())
       .post('/book')
-      .send({
-        isbn: '9788374323574',
-        title: 'Test Book',
-        subtitle: 'Test subtitle',
-        authorIds: [author.id],
-      })
+      .field('isbn', '9788374323574')
+      .field('title', 'Test Book')
+      .field('subtitle', 'Test subtitle')
+      .field('authorIds[0]', author.id)
+      .attach('cover', __dirname + '/fixtures/kitten.jpeg')
       .expect(201);
 
     const foundBook = await bookRepository.findOne(body.id, {

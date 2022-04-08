@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsISBN, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class BookDTO {
@@ -16,5 +17,6 @@ export class BookDTO {
     { allowInfinity: false, allowNaN: false, maxDecimalPlaces: 0 },
     { each: true },
   )
+  @Type(() => Number)
   authorIds!: number[];
 }

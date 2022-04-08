@@ -27,10 +27,10 @@ export class BookController {
   @UseInterceptors(FileInterceptor('cover'))
   async createBook(
     @Body() book: BookDTO,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile() cover: Express.Multer.File,
   ) {
     // Do something with it?
-    const s3File = await this.fileService.upload(file.filename, file.buffer);
+    const s3File = await this.fileService.upload(cover.filename, cover.buffer);
 
     console.log(s3File);
 
